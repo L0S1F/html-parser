@@ -10,10 +10,7 @@
 #include "include/parser.h"
 
 int main() {
-    setlocale(LC_ALL, "uk_UA");
-    HTMLParser parser("index.html");
-    parser.getHTMLData();
-    std::cout << "\nНатиснiть будь-яку клавiшу щоб закрити програму\n";
-    system("pause>nul");
+    Parser htmlParser("index.html");
+    std::cout << htmlParser.getLanguage() << std::endl;
     return 0;
 }

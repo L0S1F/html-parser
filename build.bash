@@ -1,8 +1,6 @@
 #!/bin/bash
 
-PARSER_CPP="include/parser.cpp"
-
-g++ example.cpp "$PARSER_CPP" -o example
+g++ example.cpp include/parser.cpp -o example
 
 chmod +x example
 

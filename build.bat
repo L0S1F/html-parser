@@ -1,9 +1,7 @@
 @echo off
 setlocal
 
-set PARSER_CPP=include\parser.cpp
-
-g++ example.cpp %PARSER_CPP% -o example.exe
+g++ example.cpp include\parser.cpp -o example.exe
 
 ./example.exe
 
