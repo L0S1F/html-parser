@@ -1,6 +1,8 @@
 #!/bin/bash
 
-g++ example.cpp include/parser.cpp -o example
+clear
+
+g++ example.cpp include/html_parser.cpp include/css_parser.cpp -o example
 
 chmod +x example
 

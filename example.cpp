@@ -10,8 +10,12 @@
 #include "include/parser.h"
 
 int main() {
-    Parser htmlParser("index.html");
+    HTMLParser htmlParser("index.html");
+    CSSParser cssParser(htmlParser.getStyle());
     std::cout << "Language Page: " << htmlParser.getLanguage() << std::endl;
     std::cout << "Title Page: " << htmlParser.getTitle() << std::endl;
+    std::cout << "Style body: " << cssParser.getStyleBody() << std::endl;
+    std::cout << "Style #button: " << cssParser.getStyle("#button") << std::endl;
+
     return 0;
 }

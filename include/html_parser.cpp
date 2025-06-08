@@ -7,9 +7,8 @@
 */
 
 #include "parser.h"
-#include "colored_text.h"
 
-std::string Parser::getLanguage() {
+std::string HTMLParser::getLanguage() {
     std::regex lang_page("lang=\\\"([a-zA-Z\\-_]+)\\\"");
     std::smatch match; 
     if (std::regex_search(html_content, match, lang_page)) {
@@ -24,7 +23,7 @@ std::string Parser::getLanguage() {
     }
 }
 
-std::string Parser::getTitle() {
+std::string HTMLParser::getTitle() {
     std::regex title_regex(R"(<title>(.*?)</title>)", std::regex::icase);
     std::smatch match; 
     if (std::regex_search(html_content, match, title_regex)) {
@@ -34,7 +33,19 @@ std::string Parser::getTitle() {
     }
 }
 
-Parser::Parser(const char* htmlFileName) {
+std::string HTMLParser::getStyle() {
+    std::regex style_regex(R"(<style>([\s\S]*?)</style>)", std::regex::icase);
+    std::smatch match; 
+    if (std::regex_search(html_content, match, style_regex)) {
+        return match[1].str();
+    } else {
+        return RED "The page style was not found.\n" RESET_COLOR;
+    }
+}
+
+
+
+HTMLParser::HTMLParser(const char* htmlFileName) {
     if(!htmlFileName){ exit(0); }
     htmlFile.open(htmlFileName);
     if(htmlFile.is_open()) {
@@ -51,7 +62,7 @@ Parser::Parser(const char* htmlFileName) {
 
 }
 
-Parser::~Parser() {
+HTMLParser::~HTMLParser() {
     if(htmlFile.is_open()) 
         htmlFile.close();
 }
